@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
+import Image from 'next/image';
 
 const reviews = [
   {
@@ -67,7 +68,7 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
+        <Image src={img} alt={name} width={48} height={48} className="rounded-full" />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
@@ -89,7 +90,7 @@ const Testimonials = () => {
           What Our Clients Say
         </h2>
         <p className="text-lg md:text-xl text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          Real feedback from clients about RimCode's web and mobile development services.
+          Real feedback from clients about RimCode&apos;s web and mobile development services.
         </p>
         <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">
           <Marquee pauseOnHover className="[--duration:20s]">

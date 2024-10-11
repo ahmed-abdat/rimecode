@@ -62,7 +62,7 @@ const Features = () => {
             Why Choose RimCode?
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover the advantages that set us apart and drive your project's success.
+            Discover the advantages that set us apart and drive your project&apos;s success.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 py-10 max-w-7xl mx-auto">

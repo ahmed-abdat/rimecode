@@ -75,7 +75,7 @@ const Header = () => {
               className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
             >
               <AceternityLogo />
-              <span>Join Our Program</span>
+              <span>Get in Touch</span>
             </HoverBorderGradient>
             <ThemeToggle />
           </nav>
@@ -115,7 +115,7 @@ const Header = () => {
                     className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
                   >
                     <AceternityLogo />
-                    <span>Join Our Program</span>
+                    <span>Get in Touch</span>
                   </HoverBorderGradient>
                 </nav>
               </SheetContent>

@@ -8,8 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Magic UI",
-  description: "UI Library for Design Engineers",
+  title: "RimCode - Innovative Web & Mobile Solutions",
+  description: "RimCode offers cutting-edge web and mobile development services, creating scalable and user-friendly applications with modern tech stacks like React, Next.js, and Flutter.",
 };
 
 export default function RootLayout({

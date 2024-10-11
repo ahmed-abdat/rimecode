@@ -3,8 +3,13 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { ThemeToggle } from "./theme-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { ThemeToggle } from "../theme-toggle";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import Image from "next/image";
 
@@ -32,18 +37,36 @@ const Header = () => {
     <header className="fixed w-full bg-background shadow-sm z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-2xl font-bold text-primary flex items-center">
-            <Image src="/logo.png" alt="RimCode Logo" className="h-10 w-10 mr-2" width={40} height={40} />
+          <Link
+            href="/"
+            className="text-2xl font-bold text-primary flex items-center"
+          >
+            <Image
+              src="/logo.png"
+              alt="RimCode Logo"
+              className="h-10 w-10 mr-2"
+              width={40}
+              height={40}
+            />
             RimCode
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="#features" className="text-foreground hover:text-primary">
+            <Link
+              href="#features"
+              className="text-foreground hover:text-primary"
+            >
               Features
             </Link>
-            <Link href="#pricing" className="text-foreground hover:text-primary">
+            <Link
+              href="#pricing"
+              className="text-foreground hover:text-primary"
+            >
               Pricing
             </Link>
-            <Link href="#contact" className="text-foreground hover:text-primary">
+            <Link
+              href="#contact"
+              className="text-foreground hover:text-primary"
+            >
               Contact
             </Link>
             <HoverBorderGradient
@@ -68,13 +91,22 @@ const Header = () => {
               <SheetContent>
                 <SheetTitle>Menu</SheetTitle>
                 <nav className="flex flex-col space-y-4 mt-8">
-                  <Link href="#features" className="text-foreground hover:text-primary">
+                  <Link
+                    href="#features"
+                    className="text-foreground hover:text-primary"
+                  >
                     Features
                   </Link>
-                  <Link href="#pricing" className="text-foreground hover:text-primary">
+                  <Link
+                    href="#pricing"
+                    className="text-foreground hover:text-primary"
+                  >
                     Pricing
                   </Link>
-                  <Link href="#contact" className="text-foreground hover:text-primary">
+                  <Link
+                    href="#contact"
+                    className="text-foreground hover:text-primary"
+                  >
                     Contact
                   </Link>
                   <HoverBorderGradient

@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { RainbowButton } from "./ui/rainbow-button";
-import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import { RainbowButton } from "../ui/rainbow-button";
+import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
 
 const CTA = () => {
   return (

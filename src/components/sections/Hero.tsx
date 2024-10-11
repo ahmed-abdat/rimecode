@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { RainbowButton } from './ui/rainbow-button';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { RainbowButton } from "../ui/rainbow-button";
 import { BackgroundLines } from "@/components/ui/background-lines";
 
 const Hero = () => {
@@ -24,7 +24,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          RimCode delivers cutting-edge web and mobile apps with stunning UI/UX, using React, Next.js, and Flutter.
+          RimCode delivers cutting-edge web and mobile apps with stunning UI/UX,
+          using React, Next.js, and Flutter.
         </motion.p>
 
         <motion.div

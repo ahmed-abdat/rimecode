@@ -1,10 +1,10 @@
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import Pricing from '@/components/Pricing';
-import Testimonials from '@/components/Testimonials';
-import CTA from '@/components/CTA';
-import ContactForm from '@/components/ContactForm';
-import { HeroScrollDemo } from '@/components/HeroScrollDemo';
+import Hero from "@/components/sections/Hero";
+import Features from "@/components/sections/Features";
+import Pricing from "@/components/sections/Pricing";
+import Testimonials from "@/components/sections/Testimonials";
+import CTA from "@/components/sections/CTA";
+import ContactForm from "@/components/form/ContactForm";
+import { HeroScrollDemo } from "@/components/sections/HeroScrollDemo";
 
 export default function Home() {
   return (

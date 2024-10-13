@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -11,6 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rimecode.vercel.app'),
   title: "RimCode - Innovative Web & Mobile Solutions",
   description: "RimCode offers cutting-edge web and mobile development services, creating scalable and user-friendly applications with modern tech stacks like React, Next.js, and Flutter.",
   keywords: "web development, mobile apps, UI/UX design, React, Next.js, Flutter",
@@ -29,19 +31,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className={`${inter.className} overflow-x-hidden`}>
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="max-w-full overflow-x-hidden">
+          <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="max-w-full overflow-x-hidden">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />

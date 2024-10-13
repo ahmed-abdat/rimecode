@@ -126,4 +126,6 @@ const Feature = React.memo(({
   );
 });
 
+Feature.displayName = 'Feature';
+
 export default Features;

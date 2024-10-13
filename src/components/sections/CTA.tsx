@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useCallback, useMemo } from 'react';
+import React from 'react';
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { RainbowButton } from "../ui/rainbow-button";
 import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
 
 const CTA = () => {
-  const handleClick = useCallback(() => {
-    // Handle click logic
-  }, []);
-
-  const gradientColors = useMemo(() => ['#ff0000', '#00ff00', '#0000ff'], []);
-
   return (
     <div className="w-full overflow-hidden">
-      <BackgroundGradientAnimation gradientColors={gradientColors}>
+      <BackgroundGradientAnimation
+        gradientBackgroundStart="rgb(255 255 255 / 0.2)"
+        gradientBackgroundEnd="rgb(255 255 255 / 0)"
+        firstColor="#ff0000"
+        secondColor="#00ff00"
+        thirdColor="#0000ff"
+        fourthColor="#ff00ff"
+        fifthColor="white"
+      >
         <div className="w-full h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-4xl mx-auto text-center z-10">
             <motion.h2
@@ -39,7 +41,7 @@ const CTA = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <RainbowButton onClick={handleClick}>
+              <RainbowButton>
                 <Link href="#contact-us">Get in Touch</Link>
               </RainbowButton>
             </motion.div>
@@ -50,4 +52,4 @@ const CTA = () => {
   );
 };
 
-export default React.memo(CTA);
+export default CTA;

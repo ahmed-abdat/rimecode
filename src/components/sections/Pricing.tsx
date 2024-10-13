@@ -6,11 +6,6 @@ import { PricingCard } from "../pricing/PricingCard";
 import { pricingPlans } from "../pricing/PricingPlans";
 
 const Pricing = () => {
-  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
-
-  const handleCardActivation = (index: number) => {
-    setActiveCardIndex(prevIndex => prevIndex === index ? null : index);
-  };
 
   return (
     <section className="relative py-16 md:py-24 bg-white dark:bg-black overflow-hidden w-full" id="pricing">
@@ -22,8 +17,6 @@ const Pricing = () => {
               key={plan.name} 
               plan={plan} 
               index={index}
-              isActive={activeCardIndex === index}
-              onActivate={() => handleCardActivation(index)}
             />
           ))}
         </div>

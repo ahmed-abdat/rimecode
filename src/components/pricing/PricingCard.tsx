@@ -15,6 +15,8 @@ interface PricingCardProps {
     popular: boolean;
   };
   index: number;
+  isActive: boolean;
+  onActivate: () => void;
 }
 
 const cardVariants = {
@@ -60,31 +62,29 @@ const buttonTransition = {
   ease: "easeInOut",
 };
 
-export const PricingCard: React.FC<PricingCardProps> = ({ plan, index }) => {
-  const [isActive, setIsActive] = useState(false);
+export const PricingCard: React.FC<PricingCardProps> = ({ plan, index, isActive, onActivate }) => {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
-    setIsActive(false);
     setIsButtonHovered(false);
   }, [isMobile]);
 
   const handleInteraction = () => {
     if (isMobile) {
-      setIsActive(!isActive);
+      onActivate();
     }
   };
 
   const handleHoverStart = () => {
     if (!isMobile) {
-      setIsActive(true);
+      onActivate();
     }
   };
 
   const handleHoverEnd = () => {
     if (!isMobile) {
-      setIsActive(false);
+      onActivate();
     }
   };
 

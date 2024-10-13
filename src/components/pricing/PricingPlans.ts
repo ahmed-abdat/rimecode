@@ -2,8 +2,8 @@ export const pricingPlans = [
   {
     name: "BASIC PACKAGE",
     description: "For startups and small projects",
-    monthlyPrice: 5000,
-    annualPrice: 50000,
+    monthlyPrice: 17900,
+    annualPrice: 169000,
     features: [
       "Responsive Web Design",
       "Single-Page Application with React.js",
@@ -15,8 +15,8 @@ export const pricingPlans = [
   {
     name: "STANDARD PACKAGE",
     description: "For growing businesses",
-    monthlyPrice: 10000,
-    annualPrice: 100000,
+    monthlyPrice: 20000,
+    annualPrice: 189000,
     features: [
       "Comprehensive UI/UX Design",
       "Multi-Page Application with Next.js",
@@ -29,8 +29,8 @@ export const pricingPlans = [
   {
     name: "PREMIUM PACKAGE",
     description: "For large-scale projects",
-    monthlyPrice: 20000,
-    annualPrice: 200000,
+    monthlyPrice: 29900,
+    annualPrice: 289000,
     features: [
       "Custom, High-End UI/UX Design",
       "Full-Featured Web Application",

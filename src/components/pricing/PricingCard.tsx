@@ -17,23 +17,61 @@ interface PricingCardProps {
   index: number;
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+  hover: {
+    scale: 1.02,
+    transition: { duration: 0.2, ease: "easeInOut" },
+  },
+};
+
+const popularBadgeVariants = {
+  initial: { rotate: 0, scale: 1 },
+  hover: { rotate: 0, scale: 1.05 },
+};
+
+const priceVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+};
+
+const buttonTextVariants = {
+  initial: { x: 0, opacity: 1 },
+  hover: { x: -20, opacity: 0 },
+};
+
+const buttonIconVariants = {
+  initial: { x: 20, opacity: 0 },
+  hover: { x: 0, opacity: 1 },
+};
+
 export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
+
+  const handleHoverStart = () => setIsHovered(true);
+  const handleHoverEnd = () => setIsHovered(false);
 
   return (
     <motion.div
-      key={plan.name}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{
-        scale: 1.02,
-        transition: { duration: 0.2, ease: "easeInOut" }
-      }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover="hover"
+      custom={index}
       className="h-full relative"
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      layout
     >
       <NeonGradientCard
         className="h-full flex flex-col transition-all duration-300 ease-in-out"
@@ -46,12 +84,9 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
         {plan.popular && (
           <motion.div
             className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold py-1 px-3 rounded-full shadow-lg z-10"
-            initial={{ rotate: 0, scale: 1 }}
-            animate={{
-              rotate: isHovered ? 0 : 5,
-              scale: isHovered ? 1.05 : 1,
-            }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            variants={popularBadgeVariants}
+            initial="initial"
+            animate={isHovered ? "hover" : "initial"}
           >
             Most Popular
           </motion.div>
@@ -67,9 +102,10 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
             <AnimatePresence mode="wait">
               <motion.div
                 key={billingCycle}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                variants={priceVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
                 transition={{ duration: 0.2 }}
                 className="flex items-baseline"
               >
@@ -84,29 +120,19 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
           </div>
           <motion.div
             className="relative w-full mb-6 sm:mb-8"
-            onHoverStart={() => setIsButtonHovered(true)}
-            onHoverEnd={() => setIsButtonHovered(false)}
+            whileHover="hover"
+            initial="initial"
           >
             <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden">
               <motion.span
                 className="flex items-center justify-center"
-                initial={false}
-                animate={{
-                  x: isButtonHovered ? -20 : 0,
-                  opacity: isButtonHovered ? 0 : 1,
-                }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                variants={buttonTextVariants}
               >
                 Choose Plan
               </motion.span>
               <motion.span
                 className="absolute inset-0 flex items-center justify-center"
-                initial={false}
-                animate={{
-                  x: isButtonHovered ? 0 : 20,
-                  opacity: isButtonHovered ? 1 : 0,
-                }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                variants={buttonIconVariants}
               >
                 Get Started <ArrowRight className="ml-2" size={18} />
               </motion.span>
@@ -114,13 +140,16 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
           </motion.div>
           <ul className="space-y-3 sm:space-y-4 mt-auto">
             {plan.features.map((feature, idx) => (
-              <li
+              <motion.li
                 key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
                 className="flex items-start text-sm sm:text-base text-gray-600 dark:text-gray-300"
               >
                 <Check className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                 <span>{feature}</span>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>

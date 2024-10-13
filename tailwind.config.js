@@ -54,7 +54,10 @@ module.exports = {
     			card: {
     				DEFAULT: 'hsl(var(--card))',
     				foreground: 'hsl(var(--card-foreground))'
-    			}
+    			},
+    			'brand-blue': '#1E40AF',
+    			'brand-indigo': '#4338CA',
+    			'brand-purple': '#6D28D9'
     		},
     		animation: {
     			'accordion-down': 'accordion-down 0.2s ease-out',

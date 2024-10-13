@@ -32,9 +32,17 @@ const CTA = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <RainbowButton>
-              <Link href="#contact-us">Get in Touch</Link>
-            </RainbowButton>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <RainbowButton>
+                <Link href="/contact" className="block py-2 px-4">
+                  Launch Your Project
+                </Link>
+              </RainbowButton>
+            </motion.div>
           </motion.div>
         </div>
       </div>

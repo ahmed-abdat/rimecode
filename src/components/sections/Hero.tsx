@@ -33,9 +33,17 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <RainbowButton>
-            <Link href="#contact">Get Started</Link>
-          </RainbowButton>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            <RainbowButton>
+              <Link href="/#hero-scroll" className="block py-2 px-4">
+                Get Started
+              </Link>
+            </RainbowButton>
+          </motion.div>
         </motion.div>
       </div>
     </BackgroundLines>

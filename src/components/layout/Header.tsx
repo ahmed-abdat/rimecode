@@ -58,22 +58,16 @@ const Header = () => {
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             <Link
-              href="#features"
+              href="/#features"
               className="text-foreground hover:text-primary"
             >
               Features
             </Link>
             <Link
-              href="#pricing"
+              href="/#pricing"
               className="text-foreground hover:text-primary"
             >
               Pricing
-            </Link>
-            <Link
-              href="#contact"
-              className="text-foreground hover:text-primary"
-            >
-              Contact
             </Link>
             <HoverBorderGradient
               containerClassName="rounded-full"
@@ -81,7 +75,11 @@ const Header = () => {
               className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
             >
               <AceternityLogo />
-              <span>Get in Touch</span>
+              <Link href="/contact">
+                <span className="text-foreground hover:text-primary">
+                  Get in Touch
+                </span>
+              </Link>
             </HoverBorderGradient>
             <ThemeToggle />
           </nav>
@@ -99,7 +97,7 @@ const Header = () => {
                 <nav className="flex flex-col space-y-4 mt-8">
                   <SheetClose asChild>
                     <Link
-                      href="#features"
+                      href="/#features"
                       className="text-foreground hover:text-primary"
                       onClick={closeMenu}
                     >
@@ -108,20 +106,11 @@ const Header = () => {
                   </SheetClose>
                   <SheetClose asChild>
                     <Link
-                      href="#pricing"
+                      href="/#pricing"
                       className="text-foreground hover:text-primary"
                       onClick={closeMenu}
                     >
                       Pricing
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      href="#contact"
-                      className="text-foreground hover:text-primary"
-                      onClick={closeMenu}
-                    >
-                      Contact
                     </Link>
                   </SheetClose>
                   <SheetClose asChild>

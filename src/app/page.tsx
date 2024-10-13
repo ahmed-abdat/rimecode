@@ -20,9 +20,6 @@ const Pricing = dynamic(() => import('@/components/sections/Pricing'), {
 const CTA = dynamic(() => import('@/components/sections/CTA'), {
   loading: () => <Loading />
 });
-const ContactForm = dynamic(() => import('@/components/form/ContactForm'), {
-  loading: () => <Loading />
-});
 
 export default function Home() {
   return (
@@ -34,7 +31,6 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <CTA />
-        {/* <ContactForm /> */}
       </Suspense>
     </main>
   );

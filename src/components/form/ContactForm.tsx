@@ -261,7 +261,7 @@ const ContactForm = () => {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="text-gray-600 dark:text-gray-300 mb-8"
             >
-              Your message has been sent successfully. We're excited to connect with you!
+              Your message has been sent successfully. We&apos;re excited to connect with you!
             </motion.p>
             <motion.div
               initial={{ y: 20, opacity: 0 }}

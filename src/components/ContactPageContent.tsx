@@ -37,7 +37,7 @@ export default function ContactPageContent() {
         variants={itemVariants}
         className="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100"
       >
-        Let's Build Something Great Together
+        Let&apos;s Build Something Great Together
       </motion.h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <ContactForm />
@@ -54,7 +54,7 @@ export default function ContactPageContent() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Call us</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              To chat with us directly or request information, we're available by phone at{" "}
+              To chat with us directly or request information, we&apos;re available by phone at{" "}
               <a href="tel:+22242049074" className="text-blue-600 hover:underline">
                 +222-42049074
               </a>
@@ -63,7 +63,7 @@ export default function ContactPageContent() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Custom solutions</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Need a tailored solution for your business? Contact us for a personalized quote and let's discuss how we can meet your specific needs.
+              Need a tailored solution for your business? Contact us for a personalized quote and let&apos;s discuss how we can meet your specific needs.
             </p>
           </section>
         </motion.div>

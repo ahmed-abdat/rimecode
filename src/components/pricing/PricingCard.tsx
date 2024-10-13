@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
+import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
 
 interface PricingCardProps {
   plan: {
     name: string;
     description: string;
-    monthlyPrice: number;
-    annualPrice: number;
+    price: number | null;
     features: string[];
     popular: boolean;
   };
-  billingCycle: "M" | "A";
   index: number;
 }
 
@@ -55,27 +55,86 @@ const buttonIconVariants = {
   hover: { x: 0, opacity: 1 },
 };
 
-export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const buttonTransition = {
+  duration: 0.3,
+  ease: "easeInOut",
+};
 
-  const handleHoverStart = () => setIsHovered(true);
-  const handleHoverEnd = () => setIsHovered(false);
+export const PricingCard: React.FC<PricingCardProps> = ({ plan, index }) => {
+  const [isActive, setIsActive] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  useEffect(() => {
+    setIsActive(false);
+    setIsButtonHovered(false);
+  }, [isMobile]);
+
+  const handleInteraction = () => {
+    if (isMobile) {
+      setIsActive(!isActive);
+    }
+  };
+
+  const handleHoverStart = () => {
+    if (!isMobile) {
+      setIsActive(true);
+    }
+  };
+
+  const handleHoverEnd = () => {
+    if (!isMobile) {
+      setIsActive(false);
+    }
+  };
+
+  const handleButtonHover = () => {
+    setIsButtonHovered(true);
+  };
+
+  const handleButtonLeave = () => {
+    setIsButtonHovered(false);
+  };
+
+  const ButtonContent = () => (
+    <>
+      <motion.span
+        className="flex items-center justify-center"
+        variants={buttonTextVariants}
+        initial="initial"
+        animate={isButtonHovered ? "hover" : "initial"}
+        transition={buttonTransition}
+      >
+        {plan.price !== null ? "Choose Plan" : "Get in Touch"}
+      </motion.span>
+      <motion.span
+        className="absolute inset-0 flex items-center justify-center"
+        variants={buttonIconVariants}
+        initial="initial"
+        animate={isButtonHovered ? "hover" : "initial"}
+        transition={buttonTransition}
+      >
+        {plan.price !== null ? "Get Started" : "Contact Us"} <ArrowRight className="ml-2" size={18} />
+      </motion.span>
+    </>
+  );
 
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      whileHover="hover"
+      whileHover={isMobile ? undefined : "hover"}
       custom={index}
       className="h-full relative"
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
+      onClick={handleInteraction}
       layout
     >
       <NeonGradientCard
         className="h-full flex flex-col transition-all duration-300 ease-in-out"
-        isHovered={isHovered}
+        isHovered={isActive}
         neonColors={{
           firstColor: "#3B82F6",
           secondColor: "#A855F7",
@@ -86,7 +145,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
             className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold py-1 px-3 rounded-full shadow-lg z-10"
             variants={popularBadgeVariants}
             initial="initial"
-            animate={isHovered ? "hover" : "initial"}
+            animate={isActive ? "hover" : "initial"}
           >
             Most Popular
           </motion.div>
@@ -101,7 +160,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
           <div className="flex items-baseline mb-6 sm:mb-8">
             <AnimatePresence mode="wait">
               <motion.div
-                key={billingCycle}
+                key={plan.name}
                 variants={priceVariants}
                 initial="hidden"
                 animate="visible"
@@ -109,34 +168,40 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, billingCycle, in
                 transition={{ duration: 0.2 }}
                 className="flex items-baseline"
               >
-                <span className="text-3xl sm:text-5xl font-bold text-black dark:text-white">
-                  ${billingCycle === "M" ? plan.monthlyPrice : plan.annualPrice}
-                </span>
-                <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400 ml-2">
-                  /{billingCycle === "M" ? "month" : "year"}
-                </span>
+                {plan.price !== null ? (
+                  <>
+                    <span className="text-3xl sm:text-5xl font-bold text-black dark:text-white">
+                      MR {plan.price.toLocaleString()}
+                    </span>
+                    <span className="text-base sm:text-lg text-gray-600 dark:text-gray-400 ml-2">
+                      /project
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-2xl sm:text-3xl font-bold text-black dark:text-white">
+                    Contact Us
+                  </span>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
           <motion.div
             className="relative w-full mb-6 sm:mb-8"
-            whileHover="hover"
-            initial="initial"
+            onHoverStart={handleButtonHover}
+            onHoverEnd={handleButtonLeave}
+            onClick={handleButtonHover}
           >
-            <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden">
-              <motion.span
-                className="flex items-center justify-center"
-                variants={buttonTextVariants}
-              >
-                Choose Plan
-              </motion.span>
-              <motion.span
-                className="absolute inset-0 flex items-center justify-center"
-                variants={buttonIconVariants}
-              >
-                Get Started <ArrowRight className="ml-2" size={18} />
-              </motion.span>
-            </Button>
+            {plan.price !== null ? (
+              <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden">
+                <ButtonContent />
+              </Button>
+            ) : (
+              <Link href="/contact" passHref>
+                <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden">
+                  <ButtonContent />
+                </Button>
+              </Link>
+            )}
           </motion.div>
           <ul className="space-y-3 sm:space-y-4 mt-auto">
             {plan.features.map((feature, idx) => (

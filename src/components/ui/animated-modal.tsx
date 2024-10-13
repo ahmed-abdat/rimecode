@@ -221,15 +221,15 @@ const CloseIcon = () => {
 // Add it in a separate file, I've added here for simplicity
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement>,
-  callback: (open: boolean) => void
+  callback: Function
 ) => {
   useEffect(() => {
-    const listener = (event: MouseEvent | TouchEvent) => {
+    const listener = (event: any) => {
       // DO NOTHING if the element being clicked is the target element or their children
-      if (!ref.current || ref.current.contains(event.target as Node)) {
+      if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
-      callback(false);
+      callback(event);
     };
 
     document.addEventListener("mousedown", listener);

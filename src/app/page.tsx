@@ -1,21 +1,41 @@
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import Pricing from "@/components/sections/Pricing";
-import Testimonials from "@/components/sections/Testimonials";
-import CTA from "@/components/sections/CTA";
-import ContactForm from "@/components/form/ContactForm";
-import { HeroScrollDemo } from "@/components/sections/HeroScrollDemo";
+import dynamic from "next/dynamic";
+import { Suspense } from 'react';
+import Loading from './loading';
+
+const Hero = dynamic(() => import('@/components/sections/Hero'), {
+  loading: () => <Loading />
+});
+const HeroScrollDemo = dynamic(() => import('@/components/sections/HeroScrollDemo'), {
+  loading: () => <Loading />
+});
+const Features = dynamic(() => import('@/components/sections/Features'), {
+  loading: () => <Loading />
+});
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), {
+  loading: () => <Loading />
+});
+const Pricing = dynamic(() => import('@/components/sections/Pricing'), {
+  loading: () => <Loading />
+});
+const CTA = dynamic(() => import('@/components/sections/CTA'), {
+  loading: () => <Loading />
+});
+const ContactForm = dynamic(() => import('@/components/form/ContactForm'), {
+  loading: () => <Loading />
+});
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
-      <Hero />
-      <HeroScrollDemo />
-      <Features />
-      <Pricing />
-      <Testimonials />
-      <CTA />
-      <ContactForm />
+    <main className="flex min-h-screen flex-col items-center justify-between max-w-full overflow-x-hidden">
+      <Suspense fallback={<Loading />}>
+        <Hero />
+        <HeroScrollDemo />
+        <Features />
+        <Testimonials />
+        <Pricing />
+        <CTA />
+        <ContactForm />
+      </Suspense>
     </main>
   );
 }

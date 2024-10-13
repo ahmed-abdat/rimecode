@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ import {
   SheetContent,
   SheetTrigger,
   SheetTitle,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "../theme-toggle";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
@@ -33,6 +35,10 @@ const AceternityLogo = () => (
 );
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <header className="fixed w-full bg-background shadow-sm z-50">
       <div className="container mx-auto px-4">
@@ -82,7 +88,7 @@ const Header = () => {
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center">
             <ThemeToggle />
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="ml-2">
                   <Menu className="h-5 w-5" />
@@ -91,32 +97,44 @@ const Header = () => {
               <SheetContent>
                 <SheetTitle>Menu</SheetTitle>
                 <nav className="flex flex-col space-y-4 mt-8">
-                  <Link
-                    href="#features"
-                    className="text-foreground hover:text-primary"
-                  >
-                    Features
-                  </Link>
-                  <Link
-                    href="#pricing"
-                    className="text-foreground hover:text-primary"
-                  >
-                    Pricing
-                  </Link>
-                  <Link
-                    href="#contact"
-                    className="text-foreground hover:text-primary"
-                  >
-                    Contact
-                  </Link>
-                  <HoverBorderGradient
-                    containerClassName="rounded-full"
-                    as="button"
-                    className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
-                  >
-                    <AceternityLogo />
-                    <span>Get in Touch</span>
-                  </HoverBorderGradient>
+                  <SheetClose asChild>
+                    <Link
+                      href="#features"
+                      className="text-foreground hover:text-primary"
+                      onClick={closeMenu}
+                    >
+                      Features
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      href="#pricing"
+                      className="text-foreground hover:text-primary"
+                      onClick={closeMenu}
+                    >
+                      Pricing
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      href="#contact"
+                      className="text-foreground hover:text-primary"
+                      onClick={closeMenu}
+                    >
+                      Contact
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <HoverBorderGradient
+                      containerClassName="rounded-full"
+                      as="button"
+                      className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
+                      onClick={closeMenu}
+                    >
+                      <AceternityLogo />
+                      <span>Get in Touch</span>
+                    </HoverBorderGradient>
+                  </SheetClose>
                 </nav>
               </SheetContent>
             </Sheet>

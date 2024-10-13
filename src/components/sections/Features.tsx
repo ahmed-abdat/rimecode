@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { cn } from "@/lib/utils";
 import {
   IconTerminal2,
@@ -10,6 +11,7 @@ import {
   IconHeadset,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const features = [
   {
@@ -26,8 +28,7 @@ const features = [
   },
   {
     title: "Scalable Solutions",
-    description:
-      "Build applications that grow with your business.",
+    description: "Build applications that grow with your business.",
     icon: <IconDeviceDesktopAnalytics />,
   },
   {
@@ -42,8 +43,7 @@ const features = [
   },
   {
     title: "Dedicated Support",
-    description:
-      "Get ongoing maintenance and updates for your applications.",
+    description: "Get ongoing maintenance and updates for your applications.",
     icon: <IconHeadset />,
   },
 ];
@@ -62,7 +62,8 @@ const Features = () => {
             Why Choose RimCode?
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover the advantages that set us apart and drive your project&apos;s success.
+            Discover the advantages that set us apart and drive your
+            project&apos;s success.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 py-10 max-w-7xl mx-auto">
@@ -75,7 +76,7 @@ const Features = () => {
   );
 };
 
-const Feature = ({
+const Feature = React.memo(({
   title,
   description,
   icon,
@@ -86,8 +87,17 @@ const Feature = ({
   icon: React.ReactNode;
   index: number;
 }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       className={cn(
         "flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800",
         (index === 0 || index === 3) && "lg:border-l dark:border-neutral-800",
@@ -112,8 +122,8 @@ const Feature = ({
       <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
         {description}
       </p>
-    </div>
+    </motion.div>
   );
-};
+});
 
 export default Features;

@@ -34,7 +34,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           <RainbowButton>
-            <Link href="#contact-us">Get Started</Link>
+            <Link href="#contact">Get Started</Link>
           </RainbowButton>
         </motion.div>
       </div>

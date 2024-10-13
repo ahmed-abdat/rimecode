@@ -1,16 +1,23 @@
 "use client";
 
+import React, { useCallback, useMemo } from 'react';
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { RainbowButton } from "../ui/rainbow-button";
 import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
 
 const CTA = () => {
+  const handleClick = useCallback(() => {
+    // Handle click logic
+  }, []);
+
+  const gradientColors = useMemo(() => ['#ff0000', '#00ff00', '#0000ff'], []);
+
   return (
-    <div className="w-full overflow-x-hidden">
-      <BackgroundGradientAnimation>
-        <div className="w-full h-screen flex items-center justify-center">
-          <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+    <div className="w-full overflow-hidden">
+      <BackgroundGradientAnimation gradientColors={gradientColors}>
+        <div className="w-full h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-4xl mx-auto text-center z-10">
             <motion.h2
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20"
               initial={{ opacity: 0, y: -20 }}
@@ -32,7 +39,7 @@ const CTA = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <RainbowButton>
+              <RainbowButton onClick={handleClick}>
                 <Link href="#contact-us">Get in Touch</Link>
               </RainbowButton>
             </motion.div>
@@ -43,4 +50,4 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default React.memo(CTA);

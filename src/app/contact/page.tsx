@@ -6,10 +6,11 @@ export const metadata: Metadata = {
   description: "Get in touch with us for any inquiries or support.",
 };
 
-export default function ContactPage() {
+export default function ContactPage({ searchParams }: { searchParams: { plan: string }  }) {
+
   return (
     <main className="container mx-auto px-4 py-16 md:py-24">
-      <ContactPageContent />
+      <ContactPageContent selectedPlan={searchParams.plan} />
     </main>
   );
 }

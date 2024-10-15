@@ -4,6 +4,7 @@ import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface PricingCardProps {
   plan: {
@@ -37,9 +38,15 @@ const priceVariants = {
 
 export const PricingCard: React.FC<PricingCardProps> = ({ plan, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+
+  const handlePlanSelection = () => {
+    const encodedPlanName = encodeURIComponent(plan.name);
+    router.push(`/contact?plan=${encodedPlanName}`);
+  };
 
   const ButtonContent = () => (
     <div className="relative overflow-hidden">
@@ -111,17 +118,12 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, index }) => {
             </AnimatePresence>
           </div>
           <div className="relative w-full mb-6 sm:mb-8">
-            {plan.price !== null ? (
-              <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden group">
-                <ButtonContent />
-              </Button>
-            ) : (
-              <Link href="/contact" passHref>
-                <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden group">
-                  <ButtonContent />
-                </Button>
-              </Link>
-            )}
+            <Button 
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg overflow-hidden group"
+              onClick={handlePlanSelection}
+            >
+              <ButtonContent />
+            </Button>
           </div>
           <ul className="space-y-3 sm:space-y-4 mt-auto">
             {plan.features.map((feature, idx) => (

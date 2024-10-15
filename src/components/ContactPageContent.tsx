@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import ContactForm from "@/components/form/ContactForm";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,7 +26,7 @@ const itemVariants = {
   },
 };
 
-export default function ContactPageContent() {
+export default function ContactPageContent({ selectedPlan }: { selectedPlan: string }) {
   return (
     <motion.div
       variants={containerVariants}
@@ -35,35 +36,35 @@ export default function ContactPageContent() {
     >
       <motion.h1 
         variants={itemVariants}
-        className="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-gray-100"
+        className="text-3xl sm:text-4xl font-semibold mb-12 text-center text-blue-600 dark:text-blue-400"
       >
-        Let&apos;s Build Something Great Together
+        Contact Us
       </motion.h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <ContactForm />
-        <motion.div variants={itemVariants} className="space-y-8">
+        <ContactForm selectedPlan={selectedPlan} />
+        <motion.div variants={itemVariants} className="space-y-8 pt-8">
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Contact by email</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Contact by email</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Whether you have a project in mind or need guidance on your digital strategy, our team is here to help. You can reach us at{" "}
-              <a href="mailto:contact@rimcode.com" className="text-blue-600 hover:underline">
+              For project inquiries, documentation requests, or specific information, our expert team is ready to assist you. Reach out via email at{" "}
+              <Link href="mailto:contact@rimcode.com" className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
                 contact@rimcode.com
-              </a>
+              </Link>
             </p>
           </section>
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Call us</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Direct Communication</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              To chat with us directly or request information, we&apos;re available by phone at{" "}
-              <a href="tel:+22242049074" className="text-blue-600 hover:underline">
+              For immediate assistance or to discuss your project in detail, our consultants are available by phone at{" "}
+              <Link href="tel:+22242049074" className="text-blue-600 hover:underline dark:text-blue-400 font-bold">
                 +222-42049074
-              </a>
+              </Link>
             </p>
           </section>
           <section>
-            <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Custom solutions</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Tailored Solutions</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Need a tailored solution for your business? Contact us for a personalized quote and let&apos;s discuss how we can meet your specific needs.
+              Every business is unique. Let's collaborate on crafting a bespoke solution that aligns perfectly with your goals and challenges. Contact us for a comprehensive, personalized proposal.
             </p>
           </section>
         </motion.div>

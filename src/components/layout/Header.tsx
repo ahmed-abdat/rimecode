@@ -40,12 +40,12 @@ const Header = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed w-full bg-background shadow-sm z-50">
+    <header className="fixed w-full bg-background shadow-sm z-50 py-2">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className="text-2xl font-bold text-primary flex items-center"
+            className="text-2xl font-bold text-primary flex items-center transition-transform duration-300 ease-in-out hover:scale-105"
           >
             <Image
               src="/logo.png"
@@ -56,77 +56,84 @@ const Header = () => {
             />
             RimCode
           </Link>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2">
             <Link
               href="/#features"
-              className="text-foreground hover:text-primary"
+              className="px-3 py-1 text-foreground hover:text-brand-blue dark:hover:text-brand-blue transition-colors duration-300 ease-in-out"
             >
               Features
             </Link>
             <Link
               href="/#pricing"
-              className="text-foreground hover:text-primary"
+              className="px-3 py-1 text-foreground hover:text-brand-blue transition-colors duration-300 ease-in-out"
             >
               Pricing
             </Link>
-            <HoverBorderGradient
-              containerClassName="rounded-full"
-              as="button"
-              className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
-            >
-              <AceternityLogo />
-              <Link href="/contact">
-                <span className="text-foreground hover:text-primary">
-                  Get in Touch
-                </span>
-              </Link>
-            </HoverBorderGradient>
-            <ThemeToggle />
           </nav>
-          {/* Mobile Menu */}
-          <div className="md:hidden flex items-center">
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:block">
+              <HoverBorderGradient
+                containerClassName="rounded-full transition-transform duration-300 ease-in-out hover:scale-105"
+                as="button"
+                className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
+              >
+                <AceternityLogo />
+                <Link href="/contact">
+                  <span className="text-foreground transition-colors duration-300 ease-in-out">
+                    Get in Touch
+                  </span>
+                </Link>
+              </HoverBorderGradient>
+            </div>
             <ThemeToggle />
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="ml-2">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetTitle>Menu</SheetTitle>
-                <nav className="flex flex-col space-y-4 mt-8">
-                  <SheetClose asChild>
-                    <Link
-                      href="/#features"
-                      className="text-foreground hover:text-primary"
-                      onClick={closeMenu}
-                    >
-                      Features
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      href="/#pricing"
-                      className="text-foreground hover:text-primary"
-                      onClick={closeMenu}
-                    >
-                      Pricing
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <HoverBorderGradient
-                      containerClassName="rounded-full"
-                      as="button"
-                      className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
-                      onClick={closeMenu}
-                    >
-                      <AceternityLogo />
-                      <span>Get in Touch</span>
-                    </HoverBorderGradient>
-                  </SheetClose>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon" className="transition-transform duration-300 ease-in-out hover:scale-110">
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetTitle>Menu</SheetTitle>
+                  <nav className="flex flex-col space-y-4 mt-8">
+                    <SheetClose asChild>
+                      <Link
+                        href="/#features"
+                        className="text-foreground hover:text-brand-indigo transition-colors duration-300 ease-in-out"
+                        onClick={closeMenu}
+                      >
+                        Features
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/#pricing"
+                        className="text-foreground hover:text-brand-indigo transition-colors duration-300 ease-in-out"
+                        onClick={closeMenu}
+                      >
+                        Pricing
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <HoverBorderGradient
+                        containerClassName="rounded-full transition-transform duration-300 ease-in-out hover:scale-105"
+                        as="button"
+                        className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-4 py-2"
+                        onClick={closeMenu}
+                      >
+                        <AceternityLogo />
+                        <Link href="/contact">
+                          <span className="text-foreground hover:text-primary transition-colors duration-300 ease-in-out">
+                            Get in Touch
+                          </span>
+                        </Link>
+                      </HoverBorderGradient>
+                    </SheetClose>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>

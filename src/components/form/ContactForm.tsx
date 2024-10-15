@@ -214,7 +214,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ selectedPlan }) => {
       // make the Select plan as default value
       form.setValue("selectedPlan", "Select plan");
     }
-  }, [isSubmitted, router]);
+  }, [isSubmitted, router, form]); // Add 'form' to the dependency array
 
 
 

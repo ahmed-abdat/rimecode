@@ -64,9 +64,12 @@ export default function ContactPageContent({ selectedPlan }: { selectedPlan: str
           <section>
             <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Tailored Solutions</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Every business is unique. Let's collaborate on crafting a bespoke solution that aligns perfectly with your goals and challenges. Contact us for a comprehensive, personalized proposal.
+              Every business is unique. Let&apos;s collaborate on crafting a bespoke solution that aligns perfectly with your goals and challenges. Contact us for a comprehensive, personalized proposal.
             </p>
           </section>
+          <p className="text-lg text-gray-600 mb-8">
+            We&apos;re excited to hear from you! Whether you have questions about our services, need assistance, or want to discuss a potential project, we&apos;re here to help.
+          </p>
         </motion.div>
       </div>
     </motion.div>

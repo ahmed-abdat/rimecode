@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { PricingHeading } from "../pricing/PricingHeading";
 import { PricingCard } from "../pricing/PricingCard";
 import { pricingPlans } from "../pricing/PricingPlans";

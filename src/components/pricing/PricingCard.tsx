@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface PricingCardProps {
